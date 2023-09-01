@@ -87,9 +87,9 @@ class Grover
       if status == 'ok'
         message
       elsif error_class.nil?
-        raise Grover::JavaScript::UnknownError, message
+        raise Grover::JavaScript::UnknownError, "#{message}/#{input}"
       else
-        raise Grover::JavaScript.const_get(error_class, false), message
+        raise Grover::JavaScript.const_get(error_class, false), "#{message}/#{input}"
       end
     rescue JSON::ParserError
       raise Grover::Error, 'Malformed worker response'
